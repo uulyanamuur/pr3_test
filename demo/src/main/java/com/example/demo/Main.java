@@ -114,5 +114,40 @@ public class Main {
 
     }
 
+    public static boolean playerDefend(Card enemyCard, List<Card> current, String nextName){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Ходит "+nextName+" игрок (Нажмите enter)");
+        String s = in.nextLine();
+        while (true) {
+            System.out.println("Против вас выставили карту:");
+            System.out.printf("%s %s\n", enemyCard.getValue(), enemyCard.getSuit());
+            System.out.println("Выберете действие:");
+            for (Card card : current) {
+                System.out.printf("[%s] - %s %s\n", current.indexOf(card) + 1, card.getValue(), card.getSuit());
+            }
+            System.out.print("[0] - Взять карту\n");
+            String step = in.nextLine();
+            try{
+                int intStep = Integer.parseInt(step);
+                if(intStep == 0){
+                    current.add(enemyCard);
+                    return false;
+                }
+                else {
+                    Card card = current.get(intStep - 1);
+                    if(checkFight(enemyCard, card)){
+                        current.remove(card);
+                        System.out.println("Бито!");
+                        return true;
+                    }else
+                        System.out.println("Данной картой нельзя побить вражескую. Попробуйте ещё раз");
+                }
+            }catch (Exception ignored){
+                System.out.println("Некорректные данные, попробуйте ещё раз");
+            }
+
+        }
+    }
+
 }
 
