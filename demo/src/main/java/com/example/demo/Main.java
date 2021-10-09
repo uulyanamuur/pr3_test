@@ -127,5 +127,22 @@ public class Main {
         }
     }
 
+    public static void takeSomeCard(List<Card> current, List<Card> next){
+        while (current.size()<6){
+            if(!cards.isEmpty()){
+                Card card = cards.get((int) (Math.random()*cards.size()));
+                current.add(card);
+                cards.remove(card);
+            }
+        }
+        while (next.size()<6){
+            if(!cards.isEmpty()){
+                Card card = cards.get((int) (Math.random()*cards.size()));
+                next.add(card);
+                cards.remove(card);
+            }
+        }
+    }
+
 }
 
