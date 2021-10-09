@@ -18,6 +18,7 @@ public class Main {
             System.out.println("[1] - Начать игру; [2] - Завершить");
             String start = in.nextLine();
             if (start.equals("1")) {
+                createTableOfPower();s
                 cleanAllDecks();
                 createDeck();
                 createArms();
@@ -56,6 +57,13 @@ public class Main {
         cards.clear();
         firstPlayer.clear();
         secondPlayer.clear();
+    }
+
+    public static void createTableOfPower(){
+        List<Value> values = Arrays.asList(Value.values());
+        for(Value value: values){
+            tableOfPower.put(value.value, values.indexOf(value));
+        }
     }
 
 }
