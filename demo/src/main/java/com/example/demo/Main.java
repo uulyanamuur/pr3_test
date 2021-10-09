@@ -18,6 +18,7 @@ public class Main {
             System.out.println("[1] - Начать игру; [2] - Завершить");
             String start = in.nextLine();
             if (start.equals("1")) {
+                createTrump();
                 createTableOfPower();
                 cleanAllDecks();
                 createDeck();
@@ -64,6 +65,11 @@ public class Main {
         for(Value value: values){
             tableOfPower.put(value.value, values.indexOf(value));
         }
+    }
+
+    public static void createTrump(){
+        trump = Suit.values()[(int) (Math.random()*Suit.values().length)];
+        System.out.println("Козырь - " + trump.suit);
     }
 
 }
