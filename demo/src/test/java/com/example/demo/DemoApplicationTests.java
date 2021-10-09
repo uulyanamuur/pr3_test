@@ -25,4 +25,13 @@ class DemoApplicationTests {
         Main.createDeck();
         assert Main.cards.size() == 36;
     }
+
+    @Test
+    void testCreateArms() {
+        Main.createDeck();
+        Main.firstPlayer = new LinkedList<>();
+        Main.secondPlayer = new LinkedList<>();
+        assert Main.firstPlayer.size() == 6;
+        assert Main.secondPlayer.size() == 6;
+    }
 }
