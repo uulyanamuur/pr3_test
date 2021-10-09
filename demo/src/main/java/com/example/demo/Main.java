@@ -18,7 +18,7 @@ public class Main {
             System.out.println("[1] - Начать игру; [2] - Завершить");
             String start = in.nextLine();
             if (start.equals("1")) {
-                createTableOfPower();s
+                createTableOfPower();
                 cleanAllDecks();
                 createDeck();
                 createArms();
