@@ -45,4 +45,11 @@ class DemoApplicationTests {
         assert Main.firstPlayer.isEmpty();
         assert Main.secondPlayer.isEmpty();
     }
+
+    @Test
+    void testCreateTableOfPower() {
+        Main.tableOfPower = new HashMap<>();
+        Main.createTableOfPower();
+        assert Main.tableOfPower.size() ==9;
+    }
 }
