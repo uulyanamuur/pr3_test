@@ -144,5 +144,57 @@ public class Main {
         }
     }
 
+    public static void whoIsFirst(){
+        Card firstMinTrump = null;
+        Card secondMinTrump = null;
+        for(Card card: firstPlayer){
+            if(card.getSuit().equals(trump.suit)){
+                if(firstMinTrump == null){
+                    firstMinTrump = card;
+                }else if(tableOfPower.get(card.getValue())<tableOfPower.get(firstMinTrump.getValue())){
+                    firstMinTrump = card;
+                }
+            }
+        }
+        for(Card card: secondPlayer){
+            if(card.getSuit().equals(trump.suit)){
+                if(secondMinTrump == null){
+                    secondMinTrump = card;
+                }else if(tableOfPower.get(card.getValue())<tableOfPower.get(secondMinTrump.getValue())){
+                    secondMinTrump = card;
+                }
+            }
+        }
+        if(firstMinTrump == null && secondMinTrump == null){
+            for(Card card: firstPlayer){
+                if(firstMinTrump == null){
+                    firstMinTrump = card;
+                }else if(tableOfPower.get(card.getValue())<tableOfPower.get(firstMinTrump.getValue())){
+                    firstMinTrump = card;
+                }
+            }
+            for(Card card: secondPlayer){
+                if(secondMinTrump == null){
+                    secondMinTrump = card;
+                }else if(tableOfPower.get(card.getValue())<tableOfPower.get(secondMinTrump.getValue())){
+                    secondMinTrump = card;
+                }
+            }
+        }
+
+        if(firstMinTrump == null && secondMinTrump!=null){
+            motion = "второй";
+            return;
+        }
+        if(firstMinTrump != null && secondMinTrump == null){
+            motion = "первый";
+            return;
+        }
+
+        if(tableOfPower.get(firstMinTrump.getValue())<=tableOfPower.get(secondMinTrump.getValue())){
+            motion = "первый";
+        }else motion = "второй";
+    }
+
 }
 
