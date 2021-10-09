@@ -18,6 +18,7 @@ public class Main {
             System.out.println("[1] - Начать игру; [2] - Завершить");
             String start = in.nextLine();
             if (start.equals("1")) {
+                cleanAllDecks();
                 createDeck();
                 createArms();
             } else if (start.equals("2")) {
@@ -49,6 +50,12 @@ public class Main {
         }
 //        System.out.println(firstPlayer);
 //        System.out.println(secondPlayer);
+    }
+
+    public static void cleanAllDecks(){
+        cards.clear();
+        firstPlayer.clear();
+        secondPlayer.clear();
     }
 
 }
