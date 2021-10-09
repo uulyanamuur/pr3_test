@@ -89,5 +89,43 @@ class DemoApplicationTests {
         assert !Main.checkFight(enemy, my);
     }
 
+    @Test
+    void testPlayerDefend() {
+        Main.trump = Suit.P;
+        Main.createTableOfPower();
+        InputStream inputStream = System.in;
+        List<Card> list = new LinkedList<>();
+        list.add(new Card(Value.ACE, Suit.P));
+        list.add(new Card(Value.SEVEN, Suit.CH));
+
+        ByteArrayInputStream in = new ByteArrayInputStream("1\n0".getBytes());
+        System.setIn(in);
+        Main.playerDefend(new Card(Value.QUEEN, Suit.P), list, "второй");
+        assert list.size() == 3;
+
+        in = new ByteArrayInputStream("1\n1".getBytes());
+        System.setIn(in);
+        assert Main.playerDefend(new Card(Value.QUEEN, Suit.P), list, "второй");
+
+        System.setIn(inputStream);
+
+    }
+
+    @Test
+    void testTakeSomeCard() {
+
+        Main.createDeck();
+
+        List<Card> current = new LinkedList<>();
+        current.add(new Card(Value.SEVEN, Suit.CH));
+        List<Card> next = new LinkedList<>();
+        next.add(new Card(Value.EIGHT, Suit.CH));
+
+        Main.takeSomeCard(current, next);
+        assert current.size() == 6;
+        assert next.size() == 6;
+
+    }
+
 
 }
