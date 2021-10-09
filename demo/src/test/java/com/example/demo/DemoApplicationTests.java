@@ -127,5 +127,33 @@ class DemoApplicationTests {
 
     }
 
+    @Test
+    void testWhoIsFirst() {
+        Main.trump = Suit.P;
+        Main.createTableOfPower();
+        Main.firstPlayer.add(new Card(Value.EIGHT, Suit.CH));
+        Main.secondPlayer.add(new Card(Value.KING, Suit.P));
+
+        Main.whoIsFirst();
+        assert Main.motion.equals("второй");
+
+        Main.firstPlayer.clear();
+        Main.secondPlayer.clear();
+        Main.firstPlayer.add(new Card(Value.KING, Suit.P));
+        Main.secondPlayer.add(new Card(Value.EIGHT, Suit.P));
+
+        Main.whoIsFirst();
+        assert Main.motion.equals("второй");
+
+        Main.firstPlayer.clear();
+        Main.secondPlayer.clear();
+        Main.firstPlayer.add(new Card(Value.SIX, Suit.B));
+        Main.secondPlayer.add(new Card(Value.ACE, Suit.B));
+
+        Main.whoIsFirst();
+        assert Main.motion.equals("первый");
+
+    }
+
 
 }
