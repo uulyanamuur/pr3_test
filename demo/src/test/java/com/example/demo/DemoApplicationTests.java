@@ -60,4 +60,34 @@ class DemoApplicationTests {
         assert Main.trump != null;
     }
 
+    @Test
+    void testCheckFight() {
+        Main.trump = Suit.B;
+        Main.createTableOfPower();
+        Card enemy = new Card(Value.ACE, Suit.B);
+        Card my = new Card(Value.JACK, Suit.B);
+        assert !Main.checkFight(enemy, my);
+
+        enemy = new Card(Value.SEVEN, Suit.B);
+        my = new Card(Value.JACK, Suit.B);
+        assert Main.checkFight(enemy, my);
+
+        enemy = new Card(Value.ACE, Suit.CH);
+        my = new Card(Value.JACK, Suit.B);
+        assert Main.checkFight(enemy, my);
+
+        enemy = new Card(Value.EIGHT, Suit.CH);
+        my = new Card(Value.NINE, Suit.CH);
+        assert Main.checkFight(enemy, my);
+
+        enemy = new Card(Value.KING, Suit.P);
+        my = new Card(Value.QUEEN, Suit.P);
+        assert !Main.checkFight(enemy, my);
+
+        enemy = new Card(Value.SEVEN, Suit.CH);
+        my = new Card(Value.JACK, Suit.P);
+        assert !Main.checkFight(enemy, my);
+    }
+
+
 }
