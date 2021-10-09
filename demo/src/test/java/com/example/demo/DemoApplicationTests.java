@@ -31,7 +31,18 @@ class DemoApplicationTests {
         Main.createDeck();
         Main.firstPlayer = new LinkedList<>();
         Main.secondPlayer = new LinkedList<>();
+        Main.createArms();
         assert Main.firstPlayer.size() == 6;
         assert Main.secondPlayer.size() == 6;
+    }
+
+    @Test
+    void testCleanAllDecks() {
+        Main.createDeck();
+        Main.createArms();
+        Main.cleanAllDecks();
+        assert Main.cards.isEmpty();
+        assert Main.firstPlayer.isEmpty();
+        assert Main.secondPlayer.isEmpty();
     }
 }
