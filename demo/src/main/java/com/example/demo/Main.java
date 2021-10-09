@@ -25,6 +25,7 @@ public class Main {
                 cleanAllDecks();
                 createDeck();
                 createArms();
+                play();
             } else if (start.equals("2")) {
                 System.out.println("Завершение...");
                 return;
@@ -194,6 +195,49 @@ public class Main {
         if(tableOfPower.get(firstMinTrump.getValue())<=tableOfPower.get(secondMinTrump.getValue())){
             motion = "первый";
         }else motion = "второй";
+    }
+
+    public static void play(){
+        Scanner in = new Scanner(System.in);
+        whoIsFirst();
+        while (!firstPlayer.isEmpty() && !secondPlayer.isEmpty()){
+            if(motion.equals("первый")) {
+                System.out.println("Ходит первый игрок (Нажмите enter)");
+                in.nextLine();
+                playerAttack(firstPlayer, secondPlayer, "второй");
+            } else {
+                System.out.println("Ходит второй игрок (Нажмите enter)");
+                in.nextLine();
+                playerAttack(secondPlayer, firstPlayer, "первый");
+            }
+        }
+        if(firstPlayer.isEmpty())
+            System.out.println("Первый игрок победил");
+        if(secondPlayer.isEmpty())
+            System.out.println("Второй игрок победил");
+    }
+
+    public static void playerAttack(List<Card> current, List<Card> next, String nextName){
+        Scanner in = new Scanner(System.in);
+        while (true) {
+            System.out.println("Выберите карту, которой желаете походить");
+            for (Card card : current) {
+                System.out.printf("[%s] - %s %s\n", current.indexOf(card) + 1, card.getValue(), card.getSuit());
+            }
+            String step = in.nextLine();
+            try{
+                int intStep = Integer.parseInt(step);
+                Card card = current.get(intStep - 1);
+                current.remove(card);
+                if(playerDefend(card, next, nextName)){
+                    motion = nextName;
+                }
+                takeSomeCard(current, next);
+                return;
+            }catch (Exception ignored){
+                System.out.println("Некорректные данные, попробуйте ещё раз");
+            }
+        }
     }
 
 }
