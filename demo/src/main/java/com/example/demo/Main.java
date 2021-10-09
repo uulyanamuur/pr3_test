@@ -19,6 +19,7 @@ public class Main {
             String start = in.nextLine();
             if (start.equals("1")) {
                 createDeck();
+                createArms();
             } else if (start.equals("2")) {
                 System.out.println("Завершение...");
                 return;
@@ -35,6 +36,19 @@ public class Main {
                 cards.add(card);
             }
         }
+    }
+
+    public static void createArms(){
+        while (firstPlayer.size()<6){
+            Card card = cards.get((int) (Math.random()*cards.size()));
+            firstPlayer.add(card);
+            cards.remove(card);
+            card = cards.get((int) (Math.random()*cards.size()));
+            secondPlayer.add(card);
+            cards.remove(card);
+        }
+//        System.out.println(firstPlayer);
+//        System.out.println(secondPlayer);
     }
 
 }
