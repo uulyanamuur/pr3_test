@@ -72,5 +72,23 @@ public class Main {
         System.out.println("Козырь - " + trump.suit);
     }
 
+    public static boolean checkFight(Card enemyCard, Card card) {
+
+        // Если моя карта козырь, а вражеская - нет
+        if(card.getSuit().equals(trump.suit) && !enemyCard.getSuit().equals(trump.suit)){
+            return true;
+        }
+
+        // Если карты разные по масти
+        if(!card.getSuit().equals(enemyCard.getSuit()))
+            return false;
+
+        // Сравнение карт по силе
+        if(tableOfPower.get(card.getValue()) > tableOfPower.get(enemyCard.getValue()))
+            return true;
+        else return false;
+
+    }
+
 }
 
