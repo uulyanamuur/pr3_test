@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.*;
 
 public class Main {
@@ -87,6 +89,28 @@ public class Main {
         if(tableOfPower.get(card.getValue()) > tableOfPower.get(enemyCard.getValue()))
             return true;
         else return false;
+
+    }
+
+    @Test
+    void testPlayerDefend() {
+        Main.trump = Suit.P;
+        Main.createTableOfPower();
+        InputStream inputStream = System.in;
+        List<Card> list = new LinkedList<>();
+        list.add(new Card(Value.ACE, Suit.P));
+        list.add(new Card(Value.SEVEN, Suit.CH));
+
+        ByteArrayInputStream in = new ByteArrayInputStream("1\n0".getBytes());
+        System.setIn(in);
+        Main.playerDefend(new Card(Value.QUEEN, Suit.P), list, "второй");
+        assert list.size() == 3;
+
+        in = new ByteArrayInputStream("1\n1".getBytes());
+        System.setIn(in);
+        assert Main.playerDefend(new Card(Value.QUEEN, Suit.P), list, "второй");
+
+        System.setIn(inputStream);
 
     }
 
